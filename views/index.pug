@@ -1,0 +1,74 @@
+extends layout
+
+block content
+  div(id = "container")
+    body
+      div(id = "header")
+        h1 Bloggington City 
+
+      div.scroll(id = "wrapper")
+        h2(style="padding-left: 15px; font-size: 30px; color: #66FCF1; opacity: 70%;") Recent Posts
+        div 
+          ul 
+            each txt in data 
+              li.title= txt.id + '. ' + txt.title 
+                div.entry= txt.blog_txt
+                  div.user= "Posted By: " + txt.author
+
+      div(id = "navigation") 
+        h1(style="font-family: Allerta Stencil") Create Blog Post
+        form(action="/add" method="POST" autocomplete="off")
+          div(id="cont")
+            label(for="blog") Title:
+            br
+            input(name="tblog" id="tblog" placeholder="Enter Your Title Here" required)
+            br
+            label(for="blog") Author:
+            br
+            input(name="aublog" id="aublog" placeholder="Enter Your Name Here" required)
+            br
+            label(for="blog") Body:
+            br
+            textarea(name="ablog" id="ablog", cols="30", rows="10" placeholder="Enter Text Here" required)
+          
+          div 
+            br
+            button Add Post
+        br
+
+      div(id = "extra" style="background-color: rgba(0,150,0,0.5);") 
+        h1(style="font-family: Allerta Stencil") Edit Blog 
+        form(action="/edit" method="POST" autocomplete="off")
+          div(id = "cont")
+            label(for="blog") Edit Post:
+            br
+            input(name="eblog" id="eblog" placeholder="Enter Post ID Here" required)
+            br
+            label(for="blog") Add Title:
+            br
+            input(name="etblog" id="etblog" placeholder="Edit Title Here" required)
+            br
+            label(for="blog") Edit Body:
+            br
+            textarea(name="etextblog" id="etextblog", cols="30", rows="20" placeholder="Edit Text Here" required)
+            br
+
+          div
+            br
+            button Edit Post
+        
+    
+      div(id = "extra" style ="background-color: rgba(255,0,0,0.5);") 
+        h1(style="font-family: Allerta Stencil") Remove Blog 
+        form(action="/delete" method="POST" autocomplete="off")
+          div(id="cont")
+            label(for="blog") Delete Post:
+            br
+            input(name="dblog" id="dblog" placeholder="Enter Post ID Here" required)
+            br
+          
+          div
+            br
+            button Remove Post 
+
+
